@@ -50,16 +50,16 @@ class RestAPI(object):
                     if not self.check_agrs(data["json"],args):
                         raise "Invalid args\n Rules: {}".format(data["json"])
                     data["json"] = args
-                if "parms" in [_ for _ in data]:
-                    if not self.check_agrs(data["parms"],args):
+                if "params" in [_ for _ in data]:
+                    if not self.check_agrs(data["params"],args):
                         raise "Invalid args\n Rules: {}".format(data["json"])
-                    data["parms"] = args
+                    data["params"] = args
                 data["url"] = self.dictionary["end_point"]+self.dir_
                 output = request(**data)
                 try:
                     return output.json()
                 except:
-                    return output.text()
+                    return output
             else:
                 raise "Invalid Function"
         else:
