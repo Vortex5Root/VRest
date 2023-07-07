@@ -6,7 +6,7 @@ import json
 
 class RestAPI:
 
-    dir_       : str
+    dir_       : str = ""
     function_  : str
     dictionary : Dict
 
