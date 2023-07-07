@@ -4,7 +4,7 @@ from typing import Dict,Any
 
 import json
 
-class RestAPI:
+class RestAPI(object):
 
     dir_       : str = ""
     function_  : str
