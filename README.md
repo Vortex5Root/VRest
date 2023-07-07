@@ -7,7 +7,7 @@ VRest is a powerful Python library designed for simplifying the process of makin
 To get started with VRest, you can easily install it using Poetry, a dependency management tool. Follow the instructions below to add VRest to your project:
 
 ```bash
-poetry add https://github.com/Vortex5Root/VRest.git
+poetry add git+https://github.com/Vortex5Root/VRest.git
 ```
 
 By running this command, Poetry will fetch the latest version of VRest from the specified Git repository and add it as a dependency to your project.
