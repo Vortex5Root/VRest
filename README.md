@@ -37,7 +37,7 @@ VRest requires a configuration dictionary that defines the API endpoints and the
 ```
 
 To customize the dictionary for your specific API, replace `<url>` with the base URL of your API and `<function_name>`, `<method>`, `<json, parms>`, and `<var_name>` with appropriate values that correspond to your API's structure.
-Use Header to set Auth Tokens
+Use `header` to set Auth Tokens
 ### Example
 
 Here's a practical example to demonstrate how VRest can be utilized within your Python code:
