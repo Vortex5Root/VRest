@@ -55,6 +55,7 @@ class RestAPI(object):
                         raise "Invalid args\n Rules: {}".format(data["json"])
                     data["params"] = args
                 data["url"] = self.dictionary["end_point"]+self.dir_
+                data["header"] = self.dictionary["header"]
                 output = request(**data)
                 try:
                     return output.json()
