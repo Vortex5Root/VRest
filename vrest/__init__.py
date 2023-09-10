@@ -42,7 +42,7 @@ class RestAPI(object):
         if self.check_dir(value):
             self.dir_ = value
 
-    def exec(self,args : Dict) -> Dict:
+    def execute(self,args : Dict) -> Dict:
         if self.check_dir(self.dir_):
             if self.check_function(self.function_):
                 data = self.dictionary[self.dir_][self.function_]
