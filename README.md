@@ -17,7 +17,7 @@ poetry add git+https://github.com/Vortex5Root/VRest.git
 To get started with VRest, you need to create a `RestAPI` instance and define your API configuration, including the API endpoint, headers, and available functions. Here's a basic example using the Deepgram API:
 
 ```python
-from VRest.vrest.new_version import RestAPI
+from VRest.vrest import RestAPI
 
 # Define the API configuration
 deepgram_config = {
