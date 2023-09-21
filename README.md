@@ -6,7 +6,7 @@ VRest is a Python library for making HTTP and WebSocket requests to RESTful and 
 
 ## Installation
 
-You can install VRest using pip:
+You can install VRest using poetry:
 
 ```bash
 poetry add git+https://github.com/Vortex5Root/VRest.git
