@@ -14,9 +14,9 @@ class InvalidEndPoint(Exception):
         self.message = "Invalid EndPoint: {}".format(self.endpoint)
         super().__init__(self.message)
 
-class MissingSkeloton(Exception):
+class MissingSkeleton(Exception):
     def __init__(self, *args: object) -> None:
-        self.message = "Missing Skeloton"
+        self.message = "Missing Skeleton"
         super().__init__(self.message)
 
 class TokenRequired(Exception):
@@ -139,7 +139,7 @@ class RestAPI:
     url     : str
     headers : Dict
     session : Session
-    skeloton: Dict
+    skeleton: Dict
 
     def __init__(self,paper : Dict,token=None) -> None:
         self.paper = paper
@@ -149,8 +149,8 @@ class RestAPI:
     def start(self):
         if "end_point" not in self.paper.keys():
             raise InvalidEndPoint("")
-        if "skeloton" not in self.paper.keys():
-            raise MissingSkeloton()
+        if "skeleton" not in self.paper.keys():
+            raise MissingSkeleton()
         if "header" not in self.paper.keys():
             self.paper["header"] = {}
         self.url = self.paper["end_point"]
@@ -165,16 +165,16 @@ class RestAPI:
                 break
         self.session = Session()
         self.session.headers.update(self.headers)
-        self.skeloton = self.paper["skeloton"]
+        self.skeleton = self.paper["skeleton"]
         self.load_functions()
 
     def load_functions(self):
-        for key in self.skeloton:
+        for key in self.skeleton:
             if self.url.endswith("/"):
                 self.url = self.url[:-1]
-            end_point = self.skeloton[key]["suffix"]
+            end_point = self.skeleton[key]["suffix"]
             _ = {
-                "end_point" : f"{self.url}/{self.skeloton[key]['suffix']}",
-                "method"    : self.skeloton[key]["method"],
+                "end_point" : f"{self.url}/{self.skeleton[key]['suffix']}",
+                "method"    : self.skeleton[key]["method"],
             }
             setattr(self,key,Function(self.session,_))
