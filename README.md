@@ -27,7 +27,7 @@ deepgram_config = {
         "content-type": "application/json",
         "*Authorization": "Token {}"
     },
-    "skeloton": {
+    "skeleton": {
         "pre_recode": {
             "suffix": "listen",
             "method": "POST"
@@ -57,7 +57,7 @@ else:
 
 ### Creating a RestAPI Instance
 
-To interact with an API, you need to create a `RestAPI` instance by providing the API configuration in a dictionary format. The configuration should include the API endpoint, headers, and skeloton (available API functions).
+To interact with an API, you need to create a `RestAPI` instance by providing the API configuration in a dictionary format. The configuration should include the API endpoint, headers, and skeleton (available API functions).
 
 ```python
 api_config = {
@@ -67,7 +67,7 @@ api_config = {
         "content-type": "application/json",
         "*Authorization": "Token {}"
     },
-    "skeloton": {
+    "skeleton": {
         "function_name": {
             "suffix": "endpoint_suffix",
             "method": "GET"
@@ -114,7 +114,7 @@ The provided code includes an audio streaming example using PyAudio and WebSocke
 VRest includes custom exceptions for handling common errors:
 
 - `InvalidEndPoint`: Raised when the API endpoint is invalid.
-- `MissingSkeloton`: Raised when the API configuration lacks a skeloton (function definitions).
+- `MissingSkeleton`: Raised when the API configuration lacks a skeleton (function definitions).
 - `TokenRequired`: Raised when an API request requires an authentication token.
 
 You can handle these exceptions in your code to gracefully manage errors.
