@@ -120,6 +120,8 @@ class Function:
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         if not self.ws:
+            if "url_params" in kwds.keys():
+                return self.session.request(self.method,self.end_point.format(**kwds["url_params"]),**kwds)
             return self.session.request(self.method,self.end_point,**kwds)
         else:
             if args != {}:
