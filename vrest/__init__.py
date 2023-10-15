@@ -24,8 +24,6 @@ class TokenRequired(Exception):
         self.message = "Token Required"
         super().__init__(self.message)
 
-queue_input = asyncio.Queue()
-queue_output = asyncio.Queue()
 class Function:
     end_point : str
     method    : str
@@ -40,6 +38,9 @@ class Function:
         # Set the Function Config
         self.end_point = config["end_point"]
         self.method = config["method"]
+        # 
+        self.queue_input = asyncio.Queue()
+        self.queue_output = asyncio.Queue()
         # Prepare the Function
         self.prepare()
     
@@ -76,6 +77,8 @@ class Function:
                 self.end_point += "&".join([f"{key}={params[key]}" for key in params.keys()])
     # Start the WebSocket Client
     async def ws_start(self,params : Dict = {}):
+        self.queue_input = asyncio.Queue()
+        self.queue_output = asyncio.Queue()
         # Check if WebSocket is enabled
         if self.ws:
             # Set URI params
@@ -91,14 +94,14 @@ class Function:
                         data = []
                         # Receive data from the WebSocket
                         async for msg in ws:
-                            await queue_output.put(json.loads(msg))
+                            await self.queue_output.put(json.loads(msg))
                     # Define the sender function
                     async def sender(ws):
                         try:
                             # Send data to the WebSocket
                             while True:
                                 # Get data from the queue
-                                data = await queue_input.get()
+                                data = await self.queue_input.get()
                                 # Send data to the WebSocket
                                 await ws.send(data)                        
                         except websockets.exceptions.ConnectionClosedOK:
@@ -125,8 +128,8 @@ class Function:
             return self.session.request(self.method,self.end_point,**kwds)
         else:
             if args != {}:
-                queue_input.put_nowait(args)
-                output = queue_output.get_nowait()
+                self.queue_input.put_nowait(args)
+                output = self.queue_output.get_nowait()
                 if output is not None:
                     return output
                 return None
