@@ -79,6 +79,7 @@ api_config = {
 # Create a RestAPI instance
 api = RestAPI(api_config, api_key="YOUR_API_KEY")
 ```
+Note: use ´*´ as prefix to informe 
 
 ### Making API Requests
 
