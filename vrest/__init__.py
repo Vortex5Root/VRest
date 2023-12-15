@@ -75,6 +75,7 @@ class Function:
                 # Set URI params
                 self.end_point += "?"
                 self.end_point += "&".join([f"{key}={params[key]}" for key in params.keys()])
+
     # Start the WebSocket Client
     async def ws_start(self,params : Dict = {}):
         self.queue_input = asyncio.Queue()
@@ -126,6 +127,7 @@ class Function:
             if "url_params" in kwds.keys():
                 url_p = kwds["url_params"]
                 del kwds["url_params"]
+                print(self.end_point.format(url_p))
                 return self.session.request(self.method,self.end_point.format(url_p),**kwds)
             return self.session.request(self.method,self.end_point,**kwds)
         else:
