@@ -131,6 +131,8 @@ class Function:
                 if kwds != {}:
                     return self.session.request(self.method,self.end_point.format(url_p),**kwds)
                 print(kwds)
+                print(self.method,self.end_point.format(url_p))
+                print(self.session.request(self.method,self.end_point.format(url_p)).text)
                 return self.session.request(self.method,self.end_point.format(url_p))
             return self.session.request(self.method,self.end_point,**kwds)
         else:
