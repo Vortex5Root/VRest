@@ -128,6 +128,7 @@ class Function:
                 url_p = kwds["url_params"]
                 del kwds["url_params"]
                 print(self.end_point.format(url_p))
+                print(kwds)
                 if kwds != {}:
                     return self.session.request(self.method,self.end_point.format(url_p),**kwds)
                 return self.session.request(self.method,self.end_point.format(url_p))
